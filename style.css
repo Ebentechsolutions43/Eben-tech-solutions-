@@ -1,0 +1,196 @@
+html {
+    scroll-behavior: smooth;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #111;
+    color: white;
+    line-height: 1.6;
+}
+
+header {
+    background: #000;
+    color: gold;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: gold;
+}
+
+.hero {
+    text-align: center;
+    padding: 120px 20px;
+    background: linear-gradient(to right, #111, #222);
+}
+
+.hero h2 {
+    font-size: 40px;
+    color: gold;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+button {
+    background: gold;
+    color: black;
+    border: none;
+    padding: 15px 35px;
+    font-size: 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: orange;
+    transform: scale(1.05);
+}
+
+button:hover {
+    background-color: orange;
+}
+
+footer {
+    background-color: #000;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
+    .about {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.about h2 {
+    color: gold;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.about p {
+    max-width: 700px;
+    margin: auto;
+    font-size: 18px;
+    line-height: 1.8;
+}
+.services {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.services h2 {
+    color: gold;
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+.service-card {
+    background: #222;
+    padding: 25px;
+    margin: 20px auto;
+    max-width: 350px;
+    border-radius: 10px;
+    border: 2px solid gold;
+    transition: 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+}
+
+.service-card h3 {
+    color: gold;
+    margin-bottom: 10px;
+}
+
+.service-card p {
+    color: white;
+}
+.contact {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.contact h2 {
+    color: gold;
+    margin-bottom: 20px;
+    font-size: 32px;
+}
+
+.contact p {
+    margin: 10px 0;
+}
+
+.contact form {
+    max-width: 500px;
+    margin: 30px auto;
+}
+
+.contact input,
+.contact textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+}
+
+.contact button {
+    background: gold;
+    color: black;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.contact button:hover {
+    background: orange;
+}
+.portfolio {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.portfolio h2 {
+    color: gold;
+    margin-bottom: 30px;
+}
+
+.project-card {
+    background: #222;
+    border: 2px solid gold;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 350px;
+    transition: 0.3s;
+}
+
+.project-card:hover {
+    transform: scale(1.03);
+}
