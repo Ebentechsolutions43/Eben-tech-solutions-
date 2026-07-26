@@ -1,0 +1,390 @@
+html {
+    scroll-behavior: smooth;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #111;
+    color: white;
+    line-height: 1.6;
+}
+
+header {
+    background: #000;
+    color: gold;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: gold;
+}
+
+.hero {
+    text-align: center;
+    padding: 120px 20px;
+    background: linear-gradient(to right, #111, #222);
+}
+
+.hero h2 {
+    font-size: 40px;
+    color: gold;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+button {
+    background: gold;
+    color: black;
+    border: none;
+    padding: 15px 35px;
+    font-size: 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: orange;
+    transform: scale(1.05);
+}
+
+button:hover {
+    background-color: orange;
+}
+
+footer {
+    background-color: #000;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
+    .about {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.about h2 {
+    color: gold;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.about p {
+    max-width: 700px;
+    margin: auto;
+    font-size: 18px;
+    line-height: 1.8;
+}
+.services {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.services h2 {
+    color: gold;
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+.service-card {
+    background: #222;
+    padding: 25px;
+    margin: 20px auto;
+    max-width: 350px;
+    border-radius: 10px;
+    border: 2px solid gold;
+    transition: 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+}
+
+.service-card h3 {
+    color: gold;
+    margin-bottom: 10px;
+}
+
+.service-card p {
+    color: white;
+}
+.contact {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.contact h2 {
+    color: gold;
+    margin-bottom: 20px;
+    font-size: 32px;
+}
+
+.contact p {
+    margin: 10px 0;
+}
+
+.contact form {
+    max-width: 500px;
+    margin: 30px auto;
+}
+
+.contact input,
+.contact textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+}
+
+.contact button {
+    background: gold;
+    color: black;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.contact button:hover {
+    background: orange;
+}
+.portfolio {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.portfolio h2 {
+    color: gold;
+    margin-bottom: 30px;
+}
+
+.project-card {
+    background: #222;
+    border: 2px solid gold;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 350px;
+    transition: 0.3s;
+}
+
+.project-card:hover {
+    transform: scale(1.03);
+}
+header {
+    background: #000;
+    padding: 15px 20px;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+nav h1 {
+    color: gold;
+    font-size: 26px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: gold;
+}
+.hero{
+    background:
+    linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+    url("hero.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero h2 {
+    font-size: 45px;
+    color: gold;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 20px;
+    max-width: 700px;
+    line-height: 1.6;
+}
+
+.hero button {
+    margin-top: 25px;
+    padding: 15px 35px;
+    border: none;
+    background: gold;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.hero button:hover {
+    background: white;
+}
+.portfolio{
+    padding:80px 20px;
+    text-align:center;
+    background:#111;
+}
+
+.portfolio h2{
+    color:gold;
+    font-size:40px;
+    margin-bottom:40px;
+}
+
+.project-card{
+    background:#222;
+    border:2px solid gold;
+    border-radius:15px;
+    padding:30px;
+    margin:20px auto;
+    max-width:600px;
+    color:white;
+    transition:.4s;
+}
+
+.project-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 20px gold;
+}
+
+.project-card h3{
+    color:gold;
+    margin-bottom:15px;
+}
+.testimonials{
+    background:#0f0f0f;
+    padding:80px 20px;
+    text-align:center;
+}
+
+.testimonials h2{
+    color:gold;
+    font-size:40px;
+    margin-bottom:40px;
+}
+
+.testimonial-card{
+    background:#222;
+    color:#fff;
+    border:2px solid gold;
+    border-radius:15px;
+    padding:25px;
+    margin:20px auto;
+    max-width:600px;
+    transition:0.3s;
+}
+
+.testimonial-card:hover{
+    transform:scale(1.03);
+    box-shadow:0 0 15px gold;
+}
+
+.testimonial-card h4{
+    color:gold;
+    margin-top:15px;
+}
+footer{
+    background:#000;
+    color:#fff;
+    text-align:center;
+    padding:40px 20px;
+    border-top:2px solid gold;
+}
+
+footer h3{
+    color:gold;
+    margin-bottom:15px;
+}
+
+.social-links{
+    margin:20px 0;
+}
+
+.social-links a{
+    color:gold;
+    text-decoration:none;
+    margin:0 10px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.social-links a:hover{
+    color:white;
+}
+
+.copyright{
+    margin-top:20px;
+    font-size:14px;
+    color:#ccc;
+}
+#topBtn{
+    display:none;
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:gold;
+    color:black;
+    border:none;
+    padding:15px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:20px;
+    font-weight:bold;
+}
+
+#topBtn:hover{
+    background:white;
+}
+#clock{
+    font-size:28px;
+    color:gold;
+    margin-top:20px;
+    font-weight:bold;
+}
