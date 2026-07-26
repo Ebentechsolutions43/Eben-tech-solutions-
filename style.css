@@ -408,3 +408,20 @@ footer h3{
 .whatsapp:hover{
     transform:scale(1.1);
     }
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo img{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+}
+
+.logo span{
+    color:gold;
+    font-size:24px;
+    font-weight:bold;
+}
