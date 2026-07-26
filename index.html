@@ -104,14 +104,29 @@
     <p><strong>Phone:</strong> +234 7057994951</p>
     <p><strong>Email:</strong> ebenezeronuche014@gmail.com</p>
 
-    <form>
-        <input type="text" placeholder="Your Name" required>
+    <form action="https://formspree.io/f/xvzedkeq" method="POST">
 
-        <input type="email" placeholder="Your Email" required>
+    <input
+        type="text"
+        name="name"
+        placeholder="Your Name"
+        required>
 
-        <textarea placeholder="Your Message" rows="5" required></textarea>
+    <input
+        type="email"
+        name="email"
+        placeholder="Your Email"
+        required>
 
-        <button type="submit">Send Message</button>
+    <textarea
+        name="message"
+        placeholder="Your Message"
+        required></textarea>
+
+    <button type="submit">
+        Send Message
+    </button>
+
     </form>
 </section>
 
