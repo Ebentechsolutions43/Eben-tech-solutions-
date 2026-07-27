@@ -65,3 +65,47 @@ function typeWriter() {
 }
 
 typeWriter();
+// Open and close the chat
+const chatButton = document.getElementById("chat-button");
+const chatBox = document.getElementById("chat-box");
+
+chatButton.addEventListener("click", function () {
+    if (chatBox.style.display === "block") {
+        chatBox.style.display = "none";
+    } else {
+        chatBox.style.display = "block";
+    }
+});
+
+// Send message
+function sendMessage() {
+    const input = document.getElementById("user-input");
+    const messages = document.getElementById("chat-messages");
+
+    let userMessage = input.value.trim();
+
+    if (userMessage === "") return;
+
+    messages.innerHTML += "<p><strong>You:</strong> " + userMessage + "</p>";
+
+    let botReply = "Sorry, I don't understand that yet.";
+
+    const msg = userMessage.toLowerCase();
+
+    if (msg.includes("hello") || msg.includes("hi")) {
+        botReply = "Hello! Welcome to Eben Tech Solutions. How can I help you today?";
+    } else if (msg.includes("service")) {
+        botReply = "We offer Web Design, Website Development, IT Support, Graphics Design, and Technology Consulting.";
+    } else if (msg.includes("contact")) {
+        botReply = "You can contact us using the Contact Form or WhatsApp on this website.";
+    } else if (msg.includes("price") || msg.includes("cost")) {
+        botReply = "Our prices depend on the project. Please send us a message with your requirements.";
+    } else if (msg.includes("thank")) {
+        botReply = "You're welcome! We appreciate your visit.";
+    }
+
+    messages.innerHTML += "<p><strong>Bot:</strong> " + botReply + "</p>";
+
+    input.value = "";
+    messages.scrollTop = messages.scrollHeight;
+}
