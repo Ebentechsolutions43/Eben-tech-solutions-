@@ -88,7 +88,37 @@ function sendMessage() {
 
     messages.innerHTML += "<p><strong>You:</strong> " + userMessage + "</p>";
 
-    let botReply = "Sorry, I don't understand that yet.";
+    let botReply = "Sorry, I don't understand that. Please ask about our services, prices, contact, website development, or IT support.";
+
+const msg = userMessage.toLowerCase();
+
+if (msg.includes("hi") || msg.includes("hello")) {
+    botReply = "👋 Hello! Welcome to Eben Tech Solutions. How can I help you today?";
+}
+else if (msg.includes("who are you")) {
+    botReply = "I'm the virtual assistant for Eben Tech Solutions. I'm here to answer your questions.";
+}
+else if (msg.includes("service")) {
+    botReply = "We provide Website Design, Software Development, IT Support, Graphics Design, Logo Design, and Technology Consulting.";
+}
+else if (msg.includes("website")) {
+    botReply = "Yes! We build modern, responsive websites for businesses, schools, churches, and individuals.";
+}
+else if (msg.includes("price") || msg.includes("cost")) {
+    botReply = "Our prices depend on your project. Please contact us for a free quotation.";
+}
+else if (msg.includes("contact")) {
+    botReply = "You can contact us through the contact form or WhatsApp on this website.";
+}
+else if (msg.includes("location")) {
+    botReply = "Eben Tech Solutions serves clients online and can work with customers from anywhere.";
+}
+else if (msg.includes("ceo") || msg.includes("owner")) {
+    botReply = "The founder of Eben Tech Solutions is Eben.";
+}
+else if (msg.includes("thank")) {
+    botReply = "😊 You're welcome! We look forward to working with you.";
+}
 
     const msg = userMessage.toLowerCase();
 
