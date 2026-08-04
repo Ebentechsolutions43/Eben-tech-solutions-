@@ -445,3 +445,48 @@ footer{
     color:#FFD700;
 }
 backToTop.style.display
+/* ==========================
+   DARK/LIGHT MODE
+========================== */
+
+.theme-btn{
+    background:#FFD700;
+    color:#111;
+    border:none;
+    padding:10px 15px;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:18px;
+    margin-right:10px;
+}
+
+.dark-mode{
+    background:#121212;
+    color:#ffffff;
+}
+
+.dark-mode header,
+.dark-mode footer,
+.dark-mode .about,
+.dark-mode .testimonials{
+    background:#1e1e1e;
+}
+
+.dark-mode .service-card,
+.dark-mode .portfolio-card,
+.dark-mode .testimonial-card{
+    background:#2a2a2a;
+    color:#ffffff;
+}
+
+.dark-mode .contact input,
+.dark-mode .contact textarea{
+    background:#333;
+    color:#fff;
+    border:1px solid #555;
+}
+
+.dark-mode .contact button{
+    background:#FFD700;
+    color:#111;
+}
