@@ -407,3 +407,40 @@ footer{
 .testimonial-card h4{
     color:#FFD700;
 }
+/* ==========================
+   CONTACT FORM
+========================== */
+
+.contact form{
+    max-width:700px;
+    margin:40px auto;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.contact input,
+.contact textarea{
+    padding:15px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    font-size:16px;
+    width:100%;
+}
+
+.contact button{
+    background:#FFD700;
+    color:#111;
+    border:none;
+    padding:15px;
+    border-radius:8px;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.contact button:hover{
+    background:#111;
+    color:#FFD700;
+}
