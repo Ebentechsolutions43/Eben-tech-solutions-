@@ -490,3 +490,42 @@ backToTop.style.display
     background:#FFD700;
     color:#111;
 }
+/* ==========================
+   FOOTER
+========================== */
+
+footer{
+    background:#111;
+    color:#fff;
+    text-align:center;
+    padding:40px 20px;
+}
+
+.footer-content h3{
+    color:#FFD700;
+    margin-bottom:15px;
+}
+
+.footer-content p{
+    margin:10px 0;
+}
+
+.social-links{
+    margin:20px 0;
+}
+
+.social-links a{
+    color:#FFD700;
+    font-size:24px;
+    margin:0 10px;
+    transition:0.3s;
+}
+
+.social-links a:hover{
+    color:#fff;
+}
+
+.copyright{
+    margin-top:20px;
+    font-size:14px;
+   }
