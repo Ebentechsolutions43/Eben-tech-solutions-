@@ -92,7 +92,7 @@ header{
 
 .hero{
     height:100vh;
-    background:url("images/hero.jpg") center/cover no-repeat;
+    background:url("hero.jpg") center/cover no-repeat;
     display:flex;
     justify-content:center;
     align-items:center;
