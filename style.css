@@ -559,3 +559,23 @@ footer{
     font-size:18px;
     color:#555;
 }
+/* ==========================
+   GOOGLE MAP
+========================== */
+
+.map{
+    padding:80px 20px;
+    text-align:center;
+    background:#f5f7fa;
+}
+
+.map h2{
+    margin-bottom:30px;
+    font-size:36px;
+}
+
+.map iframe{
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+
