@@ -8,7 +8,12 @@ window.addEventListener("load", () => {
 });
 
 // Smooth scrolling for navigation links
-const navLinks = document.querySelectorAll('a[href^="#"]');
+const menuToggle = document.getElementById("menu-toggle");
+const mobileNav = document.querySelector(".nav-links");
+
+menuToggle.addEventListener("click", () => {
+    mobileNav.classList.toggle("active");
+});
 
 navLinks.forEach(link => {
     link.addEventListener("click", function (e) {
