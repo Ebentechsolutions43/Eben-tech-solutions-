@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ebentechsolutions43.github.io/Eben-tech-solutions-/sitemap.xml
