@@ -529,3 +529,33 @@ footer{
     margin-top:20px;
     font-size:14px;
    }
+/* ==========================
+   STATISTICS
+========================== */
+
+.stats{
+    background:#FFD700;
+    padding:80px 20px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+    text-align:center;
+}
+
+.stat-box{
+    background:#fff;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.stat-box h2{
+    font-size:42px;
+    color:#111;
+    margin-bottom:10px;
+}
+
+.stat-box p{
+    font-size:18px;
+    color:#555;
+}
