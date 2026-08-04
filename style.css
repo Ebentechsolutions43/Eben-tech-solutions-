@@ -368,3 +368,42 @@ footer{
 .portfolio-card p{
     padding:0 20px 25px;
        }
+/* ==========================
+   TESTIMONIALS
+========================== */
+
+.testimonials{
+    padding:100px 20px;
+    background:#111;
+    color:#fff;
+    text-align:center;
+}
+
+.testimonials h2{
+    color:#FFD700;
+    margin-bottom:50px;
+}
+
+.testimonial-container{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.testimonial-card{
+    background:#222;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,.3);
+}
+
+.testimonial-card p{
+    font-style:italic;
+    margin-bottom:20px;
+}
+
+.testimonial-card h4{
+    color:#FFD700;
+}
