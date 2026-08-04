@@ -48,9 +48,11 @@ header{
 }
 
 .logo img{
-    width:50px;
+    width:70px;
+    height:70px;
+    object-fit:contain;
 }
-
+   
 .logo h2{
     color:#FFD700;
     font-size:22px;
