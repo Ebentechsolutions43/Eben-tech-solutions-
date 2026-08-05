@@ -137,3 +137,14 @@ function typeText() {
 }
 
 window.addEventListener("load", typeText);
+// ===============================
+// Loading Screen
+// ===============================
+
+window.addEventListener("load", () => {
+    const loader = document.getElementById("loader");
+
+    setTimeout(() => {
+        loader.style.display = "none";
+    }, 1200);
+});
