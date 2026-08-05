@@ -139,7 +139,7 @@ function typeText() {
         i++;
         setTimeout(typeText, 120);
     }
-}
+    
 });
 window.addEventListener("load", typeText);
 // ===============================
