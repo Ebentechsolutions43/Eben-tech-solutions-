@@ -143,7 +143,7 @@ window.addEventListener("load", typeText);
 // ===============================
 
 window.addEventListener("load", function () {
-    const loader = document.querySelector(".loader");
+    const loader = document.getElementById("loader");
 
     if (loader) {
         loader.style.display = "none";
