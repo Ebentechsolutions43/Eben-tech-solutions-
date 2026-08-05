@@ -119,3 +119,21 @@ window.addEventListener("load", () => {
         popup.style.display = "none";
     }, 10000);
 });
+// ===============================
+// Typing Animation
+// ===============================
+
+const text = "Eben Tech Solutions";
+const typing = document.getElementById("typing");
+
+let i = 0;
+
+function typeText() {
+    if (i < text.length) {
+        typing.textContent += text.charAt(i);
+        i++;
+        setTimeout(typeText, 120);
+    }
+}
+
+window.addEventListener("load", typeText);
