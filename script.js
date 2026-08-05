@@ -108,10 +108,7 @@ if (themeToggle) {
         }
     });
 }
-// WhatsApp Welcome Popup
-
-window.addEventListener("load", () => {
-    const popup = document.getElementById("whatsapp-popup");
+const popup = document.getElementById("whatsapp-popup");
 
 if (popup) {
     setTimeout(() => {
@@ -122,7 +119,7 @@ if (popup) {
         popup.style.display = "none";
     }, 10000);
 }
-    
+
 });   
 // ===============================
 // Typing Animation
