@@ -97,20 +97,23 @@ backToTop.addEventListener("click", () => {
 
 const themeToggle = document.getElementById("theme-toggle");
 
-themeToggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
+if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
 
-    if (document.body.classList.contains("dark-mode")) {
-        themeToggle.textContent = "☀️";
-    } else {
-        themeToggle.textContent = "🌙";
-    }
-});
+        if (document.body.classList.contains("dark-mode")) {
+            themeToggle.textContent = "☀";
+        } else {
+            themeToggle.textContent = "🌙";
+        }
+    });
+}
 // WhatsApp Welcome Popup
 
 window.addEventListener("load", () => {
     const popup = document.getElementById("whatsapp-popup");
 
+if (popup) {
     setTimeout(() => {
         popup.style.display = "block";
     }, 3000);
@@ -118,7 +121,8 @@ window.addEventListener("load", () => {
     setTimeout(() => {
         popup.style.display = "none";
     }, 10000);
-});
+}
+    
 // ===============================
 // Typing Animation
 // ===============================
