@@ -106,3 +106,16 @@ themeToggle.addEventListener("click", () => {
         themeToggle.textContent = "🌙";
     }
 });
+// WhatsApp Welcome Popup
+
+window.addEventListener("load", () => {
+    const popup = document.getElementById("whatsapp-popup");
+
+    setTimeout(() => {
+        popup.style.display = "block";
+    }, 3000);
+
+    setTimeout(() => {
+        popup.style.display = "none";
+    }, 10000);
+});
