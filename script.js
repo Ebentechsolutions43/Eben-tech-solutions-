@@ -10,6 +10,7 @@ window.addEventListener("load", () => {
 // Smooth scrolling for navigation links
 const menuToggle = document.getElementById("menu-toggle");
 const mobileNav = document.querySelector(".nav-links");
+const navLinks = document.querySelectorAll(".nav-links a");
 
 menuToggle.addEventListener("click", () => {
     mobileNav.classList.toggle("active");
