@@ -141,10 +141,10 @@ window.addEventListener("load", typeText);
 // Loading Screen
 // ===============================
 
-window.addEventListener("load", () => {
-    const loader = document.getElementById("loader");
+window.addEventListener("load", function () {
+    const loader = document.querySelector(".loader");
 
-    setTimeout(() => {
-        loader.style.display = "flex";
-    }, 1200);
+    if (loader) {
+        loader.style.display = "none";
+    }
 });
