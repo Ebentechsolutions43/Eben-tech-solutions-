@@ -123,6 +123,7 @@ if (popup) {
     }, 10000);
 }
     
+});   
 // ===============================
 // Typing Animation
 // ===============================
@@ -139,7 +140,7 @@ function typeText() {
         setTimeout(typeText, 120);
     }
 }
-
+});
 window.addEventListener("load", typeText);
 // ===============================
 // Loading Screen
