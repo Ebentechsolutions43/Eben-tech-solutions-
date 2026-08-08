@@ -11,6 +11,7 @@ window.addEventListener("load", () => {
 const menuToggle = document.getElementById("menu-toggle");
 const mobileNav = document.querySelector(".nav-links");
 const navLinks = document.querySelectorAll(".nav-links a");
+const navLinks = document.querySelectorAll(".nav-links a");
 
 menuToggle.addEventListener("click", () => {
     mobileNav.classList.toggle("active");
