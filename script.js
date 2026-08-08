@@ -220,64 +220,129 @@ document.addEventListener("DOMContentLoaded", function () {
     // Bot Responses
     // ==============================
     function getBotResponse(message) {
+    const text = message.toLowerCase().trim();
 
-        const text =
-            message.toLowerCase();
-
-        if (
-            text.includes("hello") ||
-            text.includes("hi") ||
-            text.includes("hey")
-        ) {
-            return "Hello! 👋 Welcome to Eben Tech Solutions. How can I help you today?";
-        }
-
-        if (
-            text.includes("service") ||
-            text.includes("what do you do")
-        ) {
-            return "We offer Web Design, Software Development, E-commerce, SEO, Graphic Design and IT Support.";
-        }
-
-        if (
-            text.includes("website") ||
-            text.includes("web design")
-        ) {
-            return "Yes! We design modern, responsive websites for businesses, organizations and individuals.";
-        }
-
-        if (
-            text.includes("software") ||
-            text.includes("app")
-        ) {
-            return "We can help with software and application development. Contact us on WhatsApp to discuss your project.";
-        }
-
-        if (
-            text.includes("price") ||
-            text.includes("cost") ||
-            text.includes("how much")
-        ) {
-            return "Project prices depend on your requirements. Contact us on WhatsApp for a personalized quote.";
-        }
-
-        if (
-            text.includes("contact") ||
-            text.includes("whatsapp") ||
-            text.includes("phone")
-        ) {
-            return "You can contact Eben Tech Solutions through the WhatsApp button on this website.";
-        }
-
-        if (
-            text.includes("seo") ||
-            text.includes("google")
-        ) {
-            return "We provide SEO services to help businesses improve their visibility online.";
-        }
-
-        return "I'm not sure about that yet. Please contact Eben Tech Solutions on WhatsApp and we'll be happy to help.";
+    // Greetings
+    if (
+        text.includes("hello") ||
+        text.includes("hi") ||
+        text.includes("hey") ||
+        text.includes("good morning") ||
+        text.includes("good afternoon") ||
+        text.includes("good evening")
+    ) {
+        return "Hello! 👋 Welcome to Eben Tech Solutions. How can I help you today?";
     }
+
+    // Services
+    if (
+        text.includes("service") ||
+        text.includes("what do you do") ||
+        text.includes("what can you do")
+    ) {
+        return "We offer Web Design, Software Development, E-commerce, SEO, Graphic Design and IT Support. 💻";
+    }
+
+    // Website
+    if (
+        text.includes("website") ||
+        text.includes("web design")
+    ) {
+        return "Yes! 🌐 We design modern, responsive and professional websites for businesses, organizations and individuals.";
+    }
+
+    // Software
+    if (
+        text.includes("software") ||
+        text.includes("app") ||
+        text.includes("application")
+    ) {
+        return "We can help with software and application development. Tell us about the project you have in mind. 🚀";
+    }
+
+    // E-commerce
+    if (
+        text.includes("ecommerce") ||
+        text.includes("e-commerce") ||
+        text.includes("online store")
+    ) {
+        return "Yes! 🛒 We can help create an online store where customers can view products and place orders.";
+    }
+
+    // SEO
+    if (
+        text.includes("seo") ||
+        text.includes("google") ||
+        text.includes("search engine")
+    ) {
+        return "We provide SEO services to help improve a website's visibility in search engines. 🔎";
+    }
+
+    // Graphic Design
+    if (
+        text.includes("graphic") ||
+        text.includes("logo") ||
+        text.includes("design")
+    ) {
+        return "We can help with professional graphic design, including logos and digital materials. 🎨";
+    }
+
+    // IT Support
+    if (
+        text.includes("it support") ||
+        text.includes("computer problem") ||
+        text.includes("technical support")
+    ) {
+        return "Our IT support service can help with common technology and computer-related problems. 🛠️";
+    }
+
+    // Price
+    if (
+        text.includes("price") ||
+        text.includes("cost") ||
+        text.includes("how much") ||
+        text.includes("fee")
+    ) {
+        return "💰 Project prices depend on the type and requirements of the project. Contact us on WhatsApp for a personalized quote.";
+    }
+
+    // Contact
+    if (
+        text.includes("contact") ||
+        text.includes("whatsapp") ||
+        text.includes("phone")
+    ) {
+        return "📱 You can contact Eben Tech Solutions through the WhatsApp button on the website.";
+    }
+
+    // About
+    if (
+        text.includes("about") ||
+        text.includes("who are you") ||
+        text.includes("eben tech")
+    ) {
+        return "Eben Tech Solutions provides Web Design, Software Development and IT Support to help businesses and individuals grow digitally. 🚀";
+    }
+
+    // Thanks
+    if (
+        text.includes("thank") ||
+        text.includes("thanks")
+    ) {
+        return "You're welcome! 😊 Is there anything else you'd like to know?";
+    }
+
+    // Goodbye
+    if (
+        text.includes("bye") ||
+        text.includes("goodbye")
+    ) {
+        return "Goodbye! 👋 Thanks for visiting Eben Tech Solutions.";
+    }
+
+    // Default response
+    return "I'm still learning 🤖. Try asking me about our services, websites, software, SEO, prices, or how to contact Eben Tech Solutions.";
+        }
 
     // ==============================
     // Typing Animation
