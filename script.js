@@ -150,3 +150,126 @@ window.addEventListener("load", function () {
         loader.style.display = "none";
     }
 });
+// ===============================
+// Eben AI Assistant
+// ===============================
+
+const chatToggle = document.getElementById("chat-toggle");
+const chatBox = document.getElementById("chat-box");
+const sendBtn = document.getElementById("send-btn");
+const userInput = document.getElementById("user-input");
+const chatMessages = document.getElementById("chat-messages");
+
+// Open and close chatbot
+if (chatToggle && chatBox) {
+    chatToggle.addEventListener("click", () => {
+        if (chatBox.style.display === "flex") {
+            chatBox.style.display = "none";
+        } else {
+            chatBox.style.display = "flex";
+        }
+    });
+}
+
+// Send message
+if (sendBtn && userInput) {
+    sendBtn.addEventListener("click", sendMessage);
+
+    userInput.addEventListener("keypress", (event) => {
+        if (event.key === "Enter") {
+            sendMessage();
+        }
+    });
+}
+
+function sendMessage() {
+    const message = userInput.value.trim();
+
+    if (message === "") {
+        return;
+    }
+
+    // Show user's message
+    addMessage(message, "user-message");
+
+    // Clear input
+    userInput.value = "";
+
+    // Generate bot response
+    const response = getBotResponse(message);
+
+    setTimeout(() => {
+        addMessage(response, "bot-message");
+    }, 500);
+}
+
+// Add message to chat
+function addMessage(message, className) {
+    const messageElement = document.createElement("div");
+
+    messageElement.className = className;
+    messageElement.textContent = message;
+
+    chatMessages.appendChild(messageElement);
+
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Bot responses
+function getBotResponse(message) {
+    const text = message.toLowerCase();
+
+    if (
+        text.includes("service") ||
+        text.includes("what do you do")
+    ) {
+        return "Eben Tech Solutions offers Web Design, Software Development, E-commerce, SEO, Graphic Design and IT Support.";
+    }
+
+    if (
+        text.includes("website") ||
+        text.includes("web design")
+    ) {
+        return "Yes! We design modern, responsive websites for businesses, organizations and individuals.";
+    }
+
+    if (
+        text.includes("software") ||
+        text.includes("app")
+    ) {
+        return "We can help with software and application development. Contact us on WhatsApp to discuss your project.";
+    }
+
+    if (
+        text.includes("price") ||
+        text.includes("cost") ||
+        text.includes("how much")
+    ) {
+        return "Project prices depend on your requirements. Please contact us on WhatsApp for a personalized quote.";
+    }
+
+    if (
+        text.includes("contact") ||
+        text.includes("whatsapp") ||
+        text.includes("phone")
+    ) {
+        return "You can contact Eben Tech Solutions through the WhatsApp button on this website.";
+    }
+
+    if (
+        text.includes("seo") ||
+        text.includes("google")
+    ) {
+        return "We provide SEO services to help businesses improve their visibility online.";
+    }
+
+    if (
+        text.includes("hello") ||
+        text.includes("hi") ||
+        text.includes("hey")
+    ) {
+        return "Hello! 👋 Welcome to Eben Tech Solutions. How can I help you?";
+    }
+
+    return "I'm not sure about that yet. Please contact Eben Tech Solutions on WhatsApp and we'll be happy to help.";
+}
