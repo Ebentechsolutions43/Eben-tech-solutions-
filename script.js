@@ -18,6 +18,7 @@ menuToggle.addEventListener("click", () => {
 });
 
 navLinks.forEach(link => {
+    const navLinks = document.querySelectorAll(".nav-links a");
     link.addEventListener("click", function (e) {
         e.preventDefault();
 
