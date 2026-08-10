@@ -431,3 +431,28 @@ async function loadServices() {
 }
 
 loadServices();
+// Load services from backend
+async function loadServices() {
+    try {
+        const response = await fetch("http://127.0.0.1:5000/api/services");
+        const data = await response.json();
+
+        const servicesBox = document.getElementById("backend-services");
+
+        if (servicesBox) {
+            servicesBox.innerHTML = "";
+
+            data.services.forEach(service => {
+                const item = document.createElement("div");
+                item.className = "backend-service";
+                item.textContent = "✓ " + service;
+                servicesBox.appendChild(item);
+            });
+        }
+
+    } catch (error) {
+        console.error("Backend error:", error);
+    }
+}
+
+loadServices();
