@@ -401,15 +401,19 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 });        
-async function testBackend() {
+async function loadServices() {
     try {
-        const response = await fetch("http://127.0.0.1:5000/");
+        const response = await fetch(
+            "http://127.0.0.1:5000/api/services"
+        );
+
         const data = await response.json();
 
-        console.log("Backend response:", data);
+        console.log("Services from backend:", data);
+
     } catch (error) {
-        console.error("Backend connection failed:", error);
+        console.error("Could not connect to backend:", error);
     }
 }
 
-testBackend();
+loadServices();
