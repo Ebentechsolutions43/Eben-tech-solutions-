@@ -402,6 +402,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });        
 async function loadServices() {
+    const container = document.getElementById("backend-services");
+
+    if (!container) return;
+
     try {
         const response = await fetch(
             "http://127.0.0.1:5000/api/services"
@@ -409,10 +413,20 @@ async function loadServices() {
 
         const data = await response.json();
 
-        console.log("Services from backend:", data);
+        container.innerHTML = "";
+
+        data.services.forEach(service => {
+            const item = document.createElement("div");
+
+            item.className = "backend-service";
+            item.textContent = service;
+
+            container.appendChild(item);
+        });
 
     } catch (error) {
         console.error("Could not connect to backend:", error);
+        container.textContent = "Unable to load services.";
     }
 }
 
