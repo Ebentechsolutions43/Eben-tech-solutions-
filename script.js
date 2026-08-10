@@ -401,3 +401,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 });        
+async function testBackend() {
+    try {
+        const response = await fetch("http://127.0.0.1:5000/");
+        const data = await response.json();
+
+        console.log("Backend response:", data);
+    } catch (error) {
+        console.error("Backend connection failed:", error);
+    }
+}
+
+testBackend();
