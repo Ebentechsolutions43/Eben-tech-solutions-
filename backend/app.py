@@ -1,10 +1,13 @@
 from flask import Flask, jsonify, request
-from database import create_tables, get_db_connection
+from database import get_db
+from flask_cors import CORS
+from database import get_db, init_db
 
 app = Flask(__name__)
+CORS(app)
 
-# Create the database table
-create_tables()
+# Create database/table if it doesn't exist
+init_db()
 
 
 @app.route("/")
@@ -15,50 +18,44 @@ def home():
     })
 
 
-@app.route("/api/status")
-def status():
+@app.route("/api/services")
+def services():
     return jsonify({
-        "status": "online",
-        "service": "Eben Tech Solutions API"
+        "services": [
+            "Web Design",
+            "Software Development",
+            "E-commerce",
+            "SEO",
+            "IT Support"
+        ]
     })
-
-
 @app.route("/api/contact", methods=["POST"])
-def contact():
+def api_contact():
     data = request.get_json()
 
-    if not data:
-        return jsonify({
-            "status": "error",
-            "message": "No data received"
-        }), 400
-
-    name = data.get("name", "").strip()
-    email = data.get("email", "").strip()
-    message = data.get("message", "").strip()
+    name = data.get("name")
+    email = data.get("email")
+    message = data.get("message")
 
     if not name or not email or not message:
         return jsonify({
             "status": "error",
-            "message": "Please fill in all fields"
+            "message": "All fields are required"
         }), 400
 
-    connection = get_db_connection()
+    conn = get_db()
 
-    connection.execute(
-        """
-        INSERT INTO messages (name, email, message)
-        VALUES (?, ?, ?)
-        """,
+    conn.execute(
+        "INSERT INTO messages (name, email, message) VALUES (?, ?, ?)",
         (name, email, message)
     )
 
-    connection.commit()
-    connection.close()
+    conn.commit()
+    conn.close()
 
     return jsonify({
         "status": "success",
-        "message": "Your message has been received!"
+        "message": "Message received successfully!"
     })
 
 
