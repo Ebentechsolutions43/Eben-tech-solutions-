@@ -17,18 +17,21 @@ A modern, responsive business website for **Eben Tech Solutions**.
 ## 📁 Project Structure
 
 ```
-Eben-Tech-Solutions-v2/
-│── index.html
-│── style.css
-│── script.js
-│── README.md
-│── images/
-│     ├── logo.png
-│     ├── hero.jpg
-│     ├── web-design.jpg
-│     ├── software.jpg
-│     └── it-support.jpg
-```
+Eben-tech-solutions-
+│
+├── app.py
+├── database.py
+├── requirements.txt
+├── index.html
+├── style.css
+├── script.js
+├── README.md
+└── images/
+    ├── logo.png
+    ├── hero.jpg
+    ├── web-design.jpg
+    ├── software.jpg
+    └── it-support.jpg
 
 ## 🚀 Services
 
