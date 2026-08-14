@@ -4,53 +4,105 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Account - Eben Tech Solutions</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div class="login-container">
-        <h1>Create Account</h1>
-        <p>Join Eben Tech Solutions</p>
+<div class="login-container">
 
-        <form id="registerForm">
+    <h1>Create Account</h1>
+    <p>Join Eben Tech Solutions</p>
 
-            <input
-                type="text"
-                id="registerName"
-                placeholder="Full name"
-                required
-            >
+    <form id="registerForm">
 
-            <input
-                type="email"
-                id="registerEmail"
-                placeholder="Email address"
-                required
-            >
+        <input
+            type="text"
+            id="registerName"
+            placeholder="Full name"
+            required
+        >
 
-            <input
-                type="password"
-                id="registerPassword"
-                placeholder="Password"
-                required
-            >
+        <input
+            type="email"
+            id="registerEmail"
+            placeholder="Email address"
+            required
+        >
 
-            <button type="submit">Create Account</button>
+        <input
+            type="password"
+            id="registerPassword"
+            placeholder="Password"
+            minlength="6"
+            required
+        >
 
-            <p id="registerMessage"></p>
-        </form>
+        <button type="submit">Create Account</button>
 
-        <p>
-            Already have an account?
-            <a href="login.html">Login</a>
-        </p>
+        <p id="registerMessage"></p>
 
-        <a href="index.html">← Back to Website</a>
-    </div>
+    </form>
 
-    <script src="script.js"></script>
+    <p>
+        Already have an account?
+        <a href="login.html">Login</a>
+    </p>
+
+    <a href="index.html">← Back to Website</a>
+
+</div>
+
+<script>
+const API_URL = "https://YOUR-RENDER-SERVICE.onrender.com";
+
+document.getElementById("registerForm").addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const name = document.getElementById("registerName").value;
+    const email = document.getElementById("registerEmail").value;
+    const password = document.getElementById("registerPassword").value;
+    const message = document.getElementById("registerMessage");
+
+    message.textContent = "Creating account...";
+
+    try {
+
+        const response = await fetch(`${API_URL}/api/register`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                password: password
+            })
+        });
+
+        const data = await response.json();
+
+        message.textContent = data.message;
+
+        if (data.success) {
+            document.getElementById("registerForm").reset();
+
+            setTimeout(() => {
+                window.location.href = "login.html";
+            }, 1500);
+        }
+
+    } catch (error) {
+
+        message.textContent =
+            "Could not connect to the server. Please try again later.";
+
+        console.error(error);
+    }
+
+});
+</script>
 
 </body>
 </html>
