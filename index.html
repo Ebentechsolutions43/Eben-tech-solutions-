@@ -571,6 +571,172 @@
     </div>
 
 </section>
+    <!-- ================= GET A QUOTE ================= -->
+
+<section class="quote" id="quote">
+
+    <div class="section-heading">
+
+        <p class="section-tag">START YOUR PROJECT</p>
+
+        <h2>Get a <span>Free Quote</span></h2>
+
+        <p>
+            Tell us about your project and we'll review your
+            requirements and get back to you.
+        </p>
+
+    </div>
+
+    <div class="quote-container">
+
+        <form id="quoteForm" class="quote-form">
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="quoteName">Full Name</label>
+                    <input
+                        type="text"
+                        id="quoteName"
+                        name="name"
+                        placeholder="Enter your full name"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="quoteEmail">Email Address</label>
+                    <input
+                        type="email"
+                        id="quoteEmail"
+                        name="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+                </div>
+
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="quotePhone">Phone Number</label>
+                    <input
+                        type="tel"
+                        id="quotePhone"
+                        name="phone"
+                        placeholder="e.g. 08012345678"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="quoteService">Service Needed</label>
+
+                    <select id="quoteService" name="service" required>
+
+                        <option value="">
+                            Select a service
+                        </option>
+
+                        <option value="Web Design & Development">
+                            Web Design & Development
+                        </option>
+
+                        <option value="Software Development">
+                            Software Development
+                        </option>
+
+                        <option value="E-commerce">
+                            E-commerce
+                        </option>
+
+                        <option value="Graphic Design">
+                            Graphic Design
+                        </option>
+
+                        <option value="SEO">
+                            SEO
+                        </option>
+
+                        <option value="IT Support">
+                            IT Support
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="quoteBudget">
+                    Estimated Budget
+                </label>
+
+                <select id="quoteBudget" name="budget" required>
+
+                    <option value="">
+                        Select your budget
+                    </option>
+
+                    <option value="Below ₦50,000">
+                        Below ₦50,000
+                    </option>
+
+                    <option value="₦50,000 - ₦100,000">
+                        ₦50,000 - ₦100,000
+                    </option>
+
+                    <option value="₦100,000 - ₦250,000">
+                        ₦100,000 - ₦250,000
+                    </option>
+
+                    <option value="₦250,000+">
+                        ₦250,000+
+                    </option>
+
+                    <option value="Not sure">
+                        I'm not sure
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="quoteMessage">
+                    Tell Us About Your Project
+                </label>
+
+                <textarea
+                    id="quoteMessage"
+                    name="message"
+                    rows="6"
+                    placeholder="Describe what you want us to build..."
+                    required
+                ></textarea>
+
+            </div>
+
+            <button type="submit" class="quote-btn">
+                Request My Quote
+            </button>
+
+            <p id="quoteMessageStatus"></p>
+
+        </form>
+
+    </div>
+
+</section>
 
 <!-- ================= CONTACT ================= -->
 
