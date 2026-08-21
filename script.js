@@ -456,3 +456,71 @@ async function loadServices() {
 }
 
 loadServices();
+// =========================
+// GET A QUOTE FORM
+// =========================
+
+const quoteForm = document.getElementById("quoteForm");
+const quoteStatus = document.getElementById("quoteMessageStatus");
+
+if (quoteForm) {
+
+    quoteForm.addEventListener("submit", async function (event) {
+
+        event.preventDefault();
+
+        const submitButton = quoteForm.querySelector("button[type='submit']");
+
+        submitButton.disabled = true;
+        submitButton.textContent = "Sending...";
+
+        const formData = {
+            name: document.getElementById("quoteName").value.trim(),
+            email: document.getElementById("quoteEmail").value.trim(),
+            phone: document.getElementById("quotePhone").value.trim(),
+            service: document.getElementById("quoteService").value,
+            budget: document.getElementById("quoteBudget").value,
+            message: document.getElementById("quoteMessage").value.trim()
+        };
+
+        try {
+
+            const response = await fetch("/api/quote", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            });
+
+            const result = await response.json();
+
+            if (response.ok && result.success) {
+
+                quoteStatus.textContent =
+                    "✅ Your quote request has been submitted successfully!";
+
+                quoteForm.reset();
+
+            } else {
+
+                quoteStatus.textContent =
+                    result.message || "Something went wrong. Please try again.";
+
+            }
+
+        } catch (error) {
+
+            console.error("Quote submission error:", error);
+
+            quoteStatus.textContent =
+                "Unable to submit your request right now. Please try again later.";
+
+        }
+
+        submitButton.disabled = false;
+        submitButton.textContent = "Request My Quote";
+
+    });
+
+}
