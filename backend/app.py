@@ -205,7 +205,52 @@ def contact():
         "message": "Message sent successfully"
     }), 201
 
+# =========================
+# GET A QUOTE
+# =========================
 
+@app.route("/api/quote", methods=["POST"])
+def quote():
+
+    data = request.get_json()
+
+    if not data:
+        return jsonify({
+            "success": False,
+            "message": "No data received"
+        }), 400
+
+    name = data.get("name", "").strip()
+    email = data.get("email", "").strip()
+    phone = data.get("phone", "").strip()
+    service = data.get("service", "").strip()
+    budget = data.get("budget", "").strip()
+    message = data.get("message", "").strip()
+
+    if not name or not email or not phone or not service or not budget or not message:
+        return jsonify({
+            "success": False,
+            "message": "All fields are required"
+        }), 400
+
+    conn = get_db()
+
+    conn.execute(
+        """
+        INSERT INTO quotes
+        (name, email, phone, service, budget, message)
+        VALUES (?, ?, ?, ?, ?, ?)
+        """,
+        (name, email, phone, service, budget, message)
+    )
+
+    conn.commit()
+    conn.close()
+
+    return jsonify({
+        "success": True,
+        "message": "Quote request submitted successfully"
+    }), 201
 # =========================
 # RUN APP
 # =========================
