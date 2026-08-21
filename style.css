@@ -1430,3 +1430,139 @@ footer{
     }
 
        }
+/* ================= PRICING SECTION ================= */
+
+.pricing {
+    padding: 100px 20px;
+    background: #080808;
+    text-align: center;
+}
+
+.pricing-container {
+    max-width: 1150px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    align-items: stretch;
+}
+
+.pricing-card {
+    position: relative;
+    padding: 40px 30px;
+    background: #111111;
+    border: 1px solid rgba(212, 175, 55, 0.18);
+    border-radius: 16px;
+    text-align: left;
+    transition: 0.3s ease;
+}
+
+.pricing-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(212, 175, 55, 0.65);
+}
+
+.pricing-card.featured {
+    border: 2px solid #d4af37;
+    transform: scale(1.03);
+}
+
+.pricing-card.featured:hover {
+    transform: scale(1.03) translateY(-8px);
+}
+
+.popular-badge {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 7px 16px;
+    border-radius: 20px;
+    background: #d4af37;
+    color: #050505;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.pricing-card h3 {
+    color: #ffffff;
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.pricing-description {
+    color: #aaa;
+    line-height: 1.6;
+    min-height: 75px;
+}
+
+.price {
+    margin: 25px 0;
+    color: #d4af37;
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.price span {
+    font-size: 18px;
+}
+
+.pricing-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px;
+}
+
+.pricing-card li {
+    color: #d0d0d0;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.pricing-btn {
+    display: block;
+    padding: 14px 20px;
+    text-align: center;
+    border-radius: 8px;
+    background: #d4af37;
+    color: #050505;
+    text-decoration: none;
+    font-weight: 700;
+    transition: 0.3s ease;
+}
+
+.pricing-btn:hover {
+    background: #ffffff;
+}
+
+/* ================= PRICING MOBILE ================= */
+
+@media (max-width: 850px) {
+
+    .pricing-container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .pricing-card.featured {
+        transform: none;
+    }
+
+    .pricing-card.featured:hover {
+        transform: translateY(-8px);
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .pricing {
+        padding: 75px 18px;
+    }
+
+    .pricing-container {
+        grid-template-columns: 1fr;
+    }
+
+           }
