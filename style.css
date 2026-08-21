@@ -936,3 +936,140 @@ footer{
         bottom: 20px;
     }
    }
+/* ================= HERO SECTION ================= */
+
+.hero {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 100px 20px;
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 50% 40%, rgba(212, 175, 55, 0.14), transparent 35%),
+        linear-gradient(135deg, #050505 0%, #0d0d0d 50%, #050505 100%);
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: rgba(212, 175, 55, 0.08);
+    filter: blur(80px);
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: auto;
+}
+
+.hero-tag {
+    display: inline-block;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: #d4af37;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: clamp(42px, 7vw, 78px);
+    line-height: 1.05;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -2px;
+}
+
+.hero h1 span {
+    display: block;
+    color: #d4af37;
+    margin-top: 10px;
+}
+
+.hero-description {
+    max-width: 700px;
+    margin: 28px auto 40px;
+    color: #cfcfcf;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 170px;
+    padding: 15px 28px;
+    border-radius: 8px;
+    background: #d4af37;
+    color: #050505;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.hero-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(212, 175, 55, 0.25);
+}
+
+.secondary-btn {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(212, 175, 55, 0.6);
+}
+
+.secondary-btn:hover {
+    background: #d4af37;
+    color: #050505;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+
+    .hero {
+        min-height: 80vh;
+        padding: 80px 18px;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+        letter-spacing: -1px;
+    }
+
+    .hero-description {
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hero-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+   }
