@@ -434,7 +434,7 @@ loadServices();
 // Load services from backend
 async function loadServices() {
     try {
-        const response = await fetch("http://127.0.0.1:5000/api/services");
+        const response = await fetch("/api/services")
         const data = await response.json();
 
         const servicesBox = document.getElementById("backend-services");
