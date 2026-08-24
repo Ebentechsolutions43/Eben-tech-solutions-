@@ -454,73 +454,213 @@ async function loadServices() {
         console.error("Backend error:", error);
     }
 }
+// ========================================
+// BACKEND API
+// ========================================
 
+const API_BASE_URL = "https://eben-tech-solutions.onrender.com";
+
+
+// ========================================
+// LOAD SERVICES FROM FLASK BACKEND
+// ========================================
+
+async function loadServices() {
+
+    const container =
+        document.getElementById("backend-services");
+
+    if (!container) return;
+
+    try {
+
+        const response = await fetch(
+            API_BASE_URL + "/api/services"
+        );
+
+        if (!response.ok) {
+            throw new Error("Server returned an error");
+        }
+
+        const data = await response.json();
+
+        container.innerHTML = "";
+
+        // Your Flask API returns a list directly
+        data.forEach(function (service) {
+
+            const item =
+                document.createElement("div");
+
+            item.className = "backend-service";
+
+            item.textContent = "✓ " + service;
+
+            container.appendChild(item);
+
+        });
+
+    } catch (error) {
+
+        console.error(
+            "Could not connect to backend:",
+            error
+        );
+
+        container.innerHTML =
+            "<p>Unable to load services.</p>";
+    }
+}
+
+
+// Load services
 loadServices();
-// =========================
-// GET A QUOTE FORM
-// =========================
 
-const quoteForm = document.getElementById("quoteForm");
-const quoteStatus = document.getElementById("quoteMessageStatus");
+
+// ========================================
+// GET A QUOTE FORM
+// ========================================
+
+const quoteForm =
+    document.getElementById("quoteForm");
+
+const quoteStatus =
+    document.getElementById("quoteMessageStatus");
+
 
 if (quoteForm) {
 
-    quoteForm.addEventListener("submit", async function (event) {
+    quoteForm.addEventListener(
+        "submit",
+        async function (event) {
 
-        event.preventDefault();
+            event.preventDefault();
 
-        const submitButton = quoteForm.querySelector("button[type='submit']");
+            const submitButton =
+                quoteForm.querySelector(
+                    "button[type='submit']"
+                );
 
-        submitButton.disabled = true;
-        submitButton.textContent = "Sending...";
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.textContent = "Sending...";
+            }
 
-        const formData = {
-            name: document.getElementById("quoteName").value.trim(),
-            email: document.getElementById("quoteEmail").value.trim(),
-            phone: document.getElementById("quotePhone").value.trim(),
-            service: document.getElementById("quoteService").value,
-            budget: document.getElementById("quoteBudget").value,
-            message: document.getElementById("quoteMessage").value.trim()
-        };
+            const formData = {
 
-        try {
+                name:
+                    document
+                        .getElementById("quoteName")
+                        .value
+                        .trim(),
 
-            const response = await fetch("/api/quote", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(formData)
-            });
+                email:
+                    document
+                        .getElementById("quoteEmail")
+                        .value
+                        .trim(),
 
-            const result = await response.json();
+                phone:
+                    document
+                        .getElementById("quotePhone")
+                        .value
+                        .trim(),
 
-            if (response.ok && result.success) {
+                service:
+                    document
+                        .getElementById("quoteService")
+                        .value,
 
-                quoteStatus.textContent =
-                    "✅ Your quote request has been submitted successfully!";
+                budget:
+                    document
+                        .getElementById("quoteBudget")
+                        .value,
 
-                quoteForm.reset();
+                message:
+                    document
+                        .getElementById("quoteMessage")
+                        .value
+                        .trim()
+            };
 
-            } else {
 
-                quoteStatus.textContent =
-                    result.message || "Something went wrong. Please try again.";
+            try {
+
+                const response =
+                    await fetch(
+                        API_BASE_URL + "/api/quote",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify(formData)
+                        }
+                    );
+
+
+                const result =
+                    await response.json();
+
+
+                if (
+                    response.ok &&
+                    result.success
+                ) {
+
+                    if (quoteStatus) {
+
+                        quoteStatus.textContent =
+                            "✅ Your quote request has been submitted successfully!";
+
+                    }
+
+                    quoteForm.reset();
+
+                } else {
+
+                    if (quoteStatus) {
+
+                        quoteStatus.textContent =
+                            result.message ||
+                            "Something went wrong. Please try again.";
+
+                    }
+
+                }
+
+
+            } catch (error) {
+
+                console.error(
+                    "Quote submission error:",
+                    error
+                );
+
+                if (quoteStatus) {
+
+                    quoteStatus.textContent =
+                        "Unable to submit your request right now. Please try again later.";
+
+                }
 
             }
 
-        } catch (error) {
 
-            console.error("Quote submission error:", error);
+            if (submitButton) {
 
-            quoteStatus.textContent =
-                "Unable to submit your request right now. Please try again later.";
+                submitButton.disabled = false;
+
+                submitButton.textContent =
+                    "Request My Quote";
+
+            }
 
         }
-
-        submitButton.disabled = false;
-        submitButton.textContent = "Request My Quote";
-
-    });
+    );
 
 }
