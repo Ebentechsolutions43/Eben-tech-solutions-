@@ -453,6 +453,7 @@ async function loadServices() {
         console.error("Backend error:", error);
     }
 }
+
 // ========================================
 // BACKEND API
 // ========================================
@@ -485,8 +486,16 @@ async function loadServices() {
 
         container.innerHTML = "";
 
-        // Your Flask API returns a list directly
-        data.forEach(function (service) {
+        // Handle API response
+        const services = Array.isArray(data)
+            ? data
+            : data.services;
+
+        if (!services) {
+            throw new Error("Invalid services response");
+        }
+
+        services.forEach(function (service) {
 
             const item =
                 document.createElement("div");
@@ -512,7 +521,7 @@ async function loadServices() {
 }
 
 
-// Load services
+// Load services once
 loadServices();
 
 
@@ -582,40 +591,29 @@ if (quoteForm) {
                         .trim()
             };
 
-
             try {
 
-                const response =
-                    await fetch(
-                        API_BASE_URL + "/api/quote",
-                        {
-                            method: "POST",
+                const response = await fetch(
+                    API_BASE_URL + "/api/quote",
+                    {
+                        method: "POST",
 
-                            headers: {
-                                "Content-Type":
-                                    "application/json"
-                            },
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
 
-                            body:
-                                JSON.stringify(formData)
-                        }
-                    );
-
+                        body: JSON.stringify(formData)
+                    }
+                );
 
                 const result =
                     await response.json();
 
-
-                if (
-                    response.ok &&
-                    result.success
-                ) {
+                if (response.ok && result.success) {
 
                     if (quoteStatus) {
-
                         quoteStatus.textContent =
                             "✅ Your quote request has been submitted successfully!";
-
                     }
 
                     quoteForm.reset();
@@ -623,15 +621,11 @@ if (quoteForm) {
                 } else {
 
                     if (quoteStatus) {
-
                         quoteStatus.textContent =
                             result.message ||
                             "Something went wrong. Please try again.";
-
                     }
-
                 }
-
 
             } catch (error) {
 
@@ -641,14 +635,11 @@ if (quoteForm) {
                 );
 
                 if (quoteStatus) {
-
                     quoteStatus.textContent =
                         "Unable to submit your request right now. Please try again later.";
-
                 }
 
             }
-
 
             if (submitButton) {
 
@@ -656,10 +647,8 @@ if (quoteForm) {
 
                 submitButton.textContent =
                     "Request My Quote";
-
             }
 
         }
     );
-
 }
