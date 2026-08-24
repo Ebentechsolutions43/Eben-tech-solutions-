@@ -1,0 +1,5 @@
+backend/
+├── app.py
+├── database.py
+├── requirements.txt
+└── .gitignore
