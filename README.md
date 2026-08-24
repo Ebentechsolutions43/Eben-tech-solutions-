@@ -39,22 +39,21 @@ Our services include:
 ## 📁 Project Structure
 
 ```text
-Eben-tech-solutions-/
-│
-├── backend/
-│   ├── app.py
-│   ├── database.py
-│   └── requirements.txt
+Eben-Tech-Solutions/
 │
 ├── index.html
+├── login.html
+├── register.html
 ├── style.css
 ├── script.js
 │
-├── images/
-│   ├── logo.png
-│   ├── hero.jpg
-│   ├── web-design.jpg
-│   ├── software.jpg
-│   └── it-support.jpg
+├── logo.png
+├── web-design.jpg
+├── software.jpg
+├── it-support.jpg
 │
-└── README.md
+└── backend/
+    ├── app.py
+    ├── database.py
+    ├── requirements.txt
+    └── .gitignore
