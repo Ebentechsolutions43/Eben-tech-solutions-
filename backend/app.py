@@ -5,26 +5,38 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from database import get_db, init_db
 
 app = Flask(__name__)
-CORS(app)
 
-# Create database tables when the app starts
+# Allow your GitHub Pages frontend to communicate with Render
+CORS(app, resources={
+    r"/api/*": {
+        "origins": "*"
+    }
+})
+
+# Create database tables
 init_db()
 
 
-@app.route("/")
+# =====================================================
+# HOME / HEALTH CHECK
+# =====================================================
+
+@app.route("/", methods=["GET"])
 def home():
     return jsonify({
+        "success": True,
         "message": "Eben Tech Solutions API is running successfully!"
-    })
+    }), 200
 
 
-# =========================
+# =====================================================
 # SERVICES
-# =========================
+# =====================================================
 
 @app.route("/api/services", methods=["GET"])
 def services():
-    return jsonify([
+
+    services_list = [
         "Website Design",
         "Website Development",
         "Software Development",
@@ -32,17 +44,19 @@ def services():
         "Graphic Design",
         "Search Engine Optimization (SEO)",
         "E-commerce Solutions"
-    ])
+    ]
+
+    return jsonify(services_list), 200
 
 
-# =========================
+# =====================================================
 # REGISTER
-# =========================
+# =====================================================
 
 @app.route("/api/register", methods=["POST"])
 def register():
 
-    data = request.get_json()
+    data = request.get_json(silent=True)
 
     if not data:
         return jsonify({
@@ -50,9 +64,9 @@ def register():
             "message": "No data received"
         }), 400
 
-    name = data.get("name", "").strip()
-    email = data.get("email", "").strip().lower()
-    password = data.get("password", "")
+    name = str(data.get("name", "")).strip()
+    email = str(data.get("email", "")).strip().lower()
+    password = str(data.get("password", ""))
 
     if not name or not email or not password:
         return jsonify({
@@ -68,48 +82,59 @@ def register():
 
     conn = get_db()
 
-    # Check if email already exists
-    existing_user = conn.execute(
-        "SELECT id FROM users WHERE email = ?",
-        (email,)
-    ).fetchone()
+    try:
 
-    if existing_user:
-        conn.close()
+        existing_user = conn.execute(
+            "SELECT id FROM users WHERE email = ?",
+            (email,)
+        ).fetchone()
+
+        if existing_user:
+            return jsonify({
+                "success": False,
+                "message": "An account with this email already exists"
+            }), 409
+
+        hashed_password = generate_password_hash(password)
+
+        conn.execute(
+            """
+            INSERT INTO users (name, email, password)
+            VALUES (?, ?, ?)
+            """,
+            (name, email, hashed_password)
+        )
+
+        conn.commit()
+
+        return jsonify({
+            "success": True,
+            "message": "Account created successfully"
+        }), 201
+
+    except Exception as error:
+
+        conn.rollback()
+
+        print("REGISTER ERROR:", error)
 
         return jsonify({
             "success": False,
-            "message": "An account with this email already exists"
-        }), 409
+            "message": "Unable to create account"
+        }), 500
 
-    # Hash the password before saving it
-    hashed_password = generate_password_hash(password)
-
-    conn.execute(
-        """
-        INSERT INTO users (name, email, password)
-        VALUES (?, ?, ?)
-        """,
-        (name, email, hashed_password)
-    )
-
-    conn.commit()
-    conn.close()
-
-    return jsonify({
-        "success": True,
-        "message": "Account created successfully"
-    }), 201
+    finally:
+        conn.close()
 
 
-# =========================
+# =====================================================
 # LOGIN
-# =========================
+# =====================================================
 
 @app.route("/api/login", methods=["POST"])
 def login():
 
-    data = request.get_json()
+    data = request.get_json(silent=True)
 
     if not data:
         return jsonify({
@@ -117,8 +142,8 @@ def login():
             "message": "No data received"
         }), 400
 
-    email = data.get("email", "").strip().lower()
-    password = data.get("password", "")
+    email = str(data.get("email", "")).strip().lower()
+    password = str(data.get("password", ""))
 
     if not email or not password:
         return jsonify({
@@ -128,48 +153,60 @@ def login():
 
     conn = get_db()
 
-    user = conn.execute(
-        """
-        SELECT id, name, email, password
-        FROM users
-        WHERE email = ?
-        """,
-        (email,)
-    ).fetchone()
+    try:
 
-    conn.close()
+        user = conn.execute(
+            """
+            SELECT id, name, email, password
+            FROM users
+            WHERE email = ?
+            """,
+            (email,)
+        ).fetchone()
 
-    if user is None:
+        if user is None:
+            return jsonify({
+                "success": False,
+                "message": "Invalid email or password"
+            }), 401
+
+        if not check_password_hash(user["password"], password):
+            return jsonify({
+                "success": False,
+                "message": "Invalid email or password"
+            }), 401
+
+        return jsonify({
+            "success": True,
+            "message": "Login successful",
+            "user": {
+                "id": user["id"],
+                "name": user["name"],
+                "email": user["email"]
+            }
+        }), 200
+
+    except Exception as error:
+
+        print("LOGIN ERROR:", error)
+
         return jsonify({
             "success": False,
-            "message": "Invalid email or password"
-        }), 401
+            "message": "Login failed"
+        }), 500
 
-    if not check_password_hash(user["password"], password):
-        return jsonify({
-            "success": False,
-            "message": "Invalid email or password"
-        }), 401
-
-    return jsonify({
-        "success": True,
-        "message": "Login successful",
-        "user": {
-            "id": user["id"],
-            "name": user["name"],
-            "email": user["email"]
-        }
-    })
+    finally:
+        conn.close()
 
 
-# =========================
+# =====================================================
 # CONTACT MESSAGE
-# =========================
+# =====================================================
 
 @app.route("/api/contact", methods=["POST"])
 def contact():
 
-    data = request.get_json()
+    data = request.get_json(silent=True)
 
     if not data:
         return jsonify({
@@ -177,9 +214,9 @@ def contact():
             "message": "No data received"
         }), 400
 
-    name = data.get("name", "").strip()
-    email = data.get("email", "").strip()
-    message = data.get("message", "").strip()
+    name = str(data.get("name", "")).strip()
+    email = str(data.get("email", "")).strip()
+    message = str(data.get("message", "")).strip()
 
     if not name or not email or not message:
         return jsonify({
@@ -189,30 +226,49 @@ def contact():
 
     conn = get_db()
 
-    conn.execute(
-        """
-        INSERT INTO messages (name, email, message)
-        VALUES (?, ?, ?)
-        """,
-        (name, email, message)
-    )
+    try:
 
-    conn.commit()
-    conn.close()
+        conn.execute(
+            """
+            INSERT INTO messages
+            (name, email, message)
+            VALUES (?, ?, ?)
+            """,
+            (name, email, message)
+        )
 
-    return jsonify({
-        "success": True,
-        "message": "Message sent successfully"
-    }), 201
+        conn.commit()
 
-# =========================
+        return jsonify({
+            "success": True,
+            "message": "Message sent successfully"
+        }), 201
+
+    except Exception as error:
+
+        conn.rollback()
+
+        print("CONTACT ERROR:", error)
+
+        return jsonify({
+            "success": False,
+            "message": "Unable to send message"
+        }), 500
+
+    finally:
+        conn.close()
+
+
+# =====================================================
 # GET A QUOTE
-# =========================
+# =====================================================
 
 @app.route("/api/quote", methods=["POST"])
 def quote():
 
-    data = request.get_json()
+    data = request.get_json(silent=True)
+
+    print("QUOTE DATA RECEIVED:", data)
 
     if not data:
         return jsonify({
@@ -220,44 +276,167 @@ def quote():
             "message": "No data received"
         }), 400
 
-    name = data.get("name", "").strip()
-    email = data.get("email", "").strip()
-    phone = data.get("phone", "").strip()
-    service = data.get("service", "").strip()
-    budget = data.get("budget", "").strip()
-    message = data.get("message", "").strip()
+    name = str(data.get("name", "")).strip()
+    email = str(data.get("email", "")).strip()
+    phone = str(data.get("phone", "")).strip()
+    service = str(data.get("service", "")).strip()
+    budget = str(data.get("budget", "")).strip()
+    message = str(data.get("message", "")).strip()
 
-    if not name or not email or not phone or not service or not budget or not message:
+    # Check all fields
+    if not name:
         return jsonify({
             "success": False,
-            "message": "All fields are required"
+            "message": "Full name is required"
+        }), 400
+
+    if not email:
+        return jsonify({
+            "success": False,
+            "message": "Email address is required"
+        }), 400
+
+    if not phone:
+        return jsonify({
+            "success": False,
+            "message": "Phone number is required"
+        }), 400
+
+    if not service:
+        return jsonify({
+            "success": False,
+            "message": "Service is required"
+        }), 400
+
+    if not budget:
+        return jsonify({
+            "success": False,
+            "message": "Budget is required"
+        }), 400
+
+    if not message:
+        return jsonify({
+            "success": False,
+            "message": "Project description is required"
         }), 400
 
     conn = get_db()
 
-    conn.execute(
-        """
-        INSERT INTO quotes
-        (name, email, phone, service, budget, message)
-        VALUES (?, ?, ?, ?, ?, ?)
-        """,
-        (name, email, phone, service, budget, message)
-    )
+    try:
 
-    conn.commit()
-    conn.close()
+        conn.execute(
+            """
+            INSERT INTO quotes
+            (
+                name,
+                email,
+                phone,
+                service,
+                budget,
+                message
+            )
+            VALUES (?, ?, ?, ?, ?, ?)
+            """,
+            (
+                name,
+                email,
+                phone,
+                service,
+                budget,
+                message
+            )
+        )
 
-    return jsonify({
-        "success": True,
-        "message": "Quote request submitted successfully"
-    }), 201
-# =========================
+        conn.commit()
+
+        print("QUOTE SAVED SUCCESSFULLY")
+
+        return jsonify({
+            "success": True,
+            "message": "Quote request submitted successfully"
+        }), 201
+
+    except Exception as error:
+
+        conn.rollback()
+
+        print("QUOTE DATABASE ERROR:", error)
+
+        return jsonify({
+            "success": False,
+            "message": "Unable to save quote request"
+        }), 500
+
+    finally:
+        conn.close()
+
+
+# =====================================================
+# TEST QUOTE DATABASE
+# =====================================================
+
+@app.route("/api/quotes", methods=["GET"])
+def get_quotes():
+
+    conn = get_db()
+
+    try:
+
+        quotes = conn.execute(
+            """
+            SELECT
+                id,
+                name,
+                email,
+                phone,
+                service,
+                budget,
+                message
+            FROM quotes
+            ORDER BY id DESC
+            """
+        ).fetchall()
+
+        result = []
+
+        for quote_item in quotes:
+
+            result.append({
+                "id": quote_item["id"],
+                "name": quote_item["name"],
+                "email": quote_item["email"],
+                "phone": quote_item["phone"],
+                "service": quote_item["service"],
+                "budget": quote_item["budget"],
+                "message": quote_item["message"]
+            })
+
+        return jsonify({
+            "success": True,
+            "quotes": result
+        }), 200
+
+    except Exception as error:
+
+        print("GET QUOTES ERROR:", error)
+
+        return jsonify({
+            "success": False,
+            "message": "Unable to retrieve quotes"
+        }), 500
+
+    finally:
+        conn.close()
+
+
+# =====================================================
 # RUN APP
-# =========================
+# =====================================================
 
 if __name__ == "__main__":
+
     app.run(
         host="0.0.0.0",
         port=5000,
         debug=False
-        )
+    )
